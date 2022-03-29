@@ -1,5 +1,7 @@
 from helium import *
-from time import sleep
+from flask import Flask
+
+app = Flask(__name__)
 
 class_list = {"CMSC330" : ["0101", "0103"], "CMSC351" : ["0201"], "INAG110" : ["0501", "0505"]}
 seat_list = {}
@@ -19,3 +21,7 @@ for a in class_list.keys():
             seat_list[a+"-"+b] = int(Text(to_right_of="Open:").value)
 kill_browser()
 print(seat_list)
+
+@app.route("/")
+def email_form():
+    return '<form> <label for="email">Email:</label> <input type="email" aria-describedby="emailHelp"><br><input type="submit" value="Submit"></form>'
