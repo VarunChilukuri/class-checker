@@ -1,5 +1,5 @@
 from helium import *
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -24,4 +24,4 @@ print(seat_list)
 
 @app.route("/")
 def email_form():
-    return '<form> <label for="email">Email:</label> <input type="email" aria-describedby="emailHelp"><br><input type="submit" value="Submit"></form>'
+    return render_template('form.html')
