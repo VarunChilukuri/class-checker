@@ -1,5 +1,5 @@
 from helium import *
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -22,6 +22,10 @@ for a in class_list.keys():
 kill_browser()
 print(seat_list)
 
-@app.route("/")
+@app.route("/", methods=['post', 'get'])
 def email_form():
-    return render_template('form.html')
+    if request.method == 'POST':
+        print(request.form.get('email'))
+        return "<h>Test</h>"
+    else:
+        return render_template('form.html')
