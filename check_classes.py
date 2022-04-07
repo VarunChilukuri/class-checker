@@ -9,7 +9,6 @@ email = ''
 @app.route("/", methods=['post', 'get'])
 def email_form():
     if request.method == 'POST':
-        email = request.form.get('email')
         parse_course_input(request.form.get('course1'), request.form.get('section1'), request.form.get('course2'), request.form.get('section2'), request.form.get('course3'), request.form.get('section3'), request.form.get('course4'), request.form.get('section4'), request.form.get('course5'), request.form.get('section5'), request.form.get('course6'), request.form.get('section6'))
         get_seats(class_list)
         return "<h>Test</h>"
@@ -17,12 +16,18 @@ def email_form():
         return render_template('form.html')
 
 def parse_course_input(c1, s1, c2, s2, c3, s3, c4, s4, c5, s5, c6, s6):
-    class_list[c1] = s1
-    class_list[c2] = s2
-    class_list[c3] = s3
-    class_list[c4] = s4
-    class_list[c5] = s5
-    class_list[c6] = s6
+    if c1 != '':
+        class_list[c1] = [s1]
+    if c2 != '':
+        class_list[c2] = [s2]
+    if c3 != '':
+        class_list[c3] = [s3]
+    if c4 != '':
+        class_list[c4] = [s4]
+    if c5 != '':
+        class_list[c5] = [s5]
+    if c6 != '':
+        class_list[c6] = [s6]
 
 def get_seats(class_list):
     #class_list = {"CMSC330" : ["0101", "0103"], "CMSC351" : ["0201"], "INAG110" : ["0501", "0505"]}
