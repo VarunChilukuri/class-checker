@@ -10,8 +10,7 @@ email = ''
 def email_form():
     if request.method == 'POST':
         parse_course_input(request.form.get('course1'), request.form.get('section1'), request.form.get('course2'), request.form.get('section2'), request.form.get('course3'), request.form.get('section3'), request.form.get('course4'), request.form.get('section4'), request.form.get('course5'), request.form.get('section5'), request.form.get('course6'), request.form.get('section6'))
-        get_seats(class_list)
-        return "<h>Test</h>"
+        return get_seats(class_list)
     else:
         return render_template('form.html')
 
@@ -48,4 +47,4 @@ def get_seats(class_list):
                 print(Text(to_right_of="Open:").value)
                 seat_list[a+"-"+b] = int(Text(to_right_of="Open:").value)
     kill_browser()
-    print(seat_list)
+    return seat_list
